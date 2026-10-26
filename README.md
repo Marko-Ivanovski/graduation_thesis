@@ -13,8 +13,8 @@ Can a large language model beat classic machine learning at detecting colorectal
 
 | Phase | Goal | Status |
 |---|---|---|
-| 1 | Rebuild the paper's data preparation from the published profiles | In progress |
-| 2A | Replicate the paper's random forest and match its AUCs | Planned |
+| 1 | Rebuild the paper's data preparation from the published profiles | Done |
+| 2A | Replicate the paper's random forest and match its AUCs | Done |
 | 2B | Tune the random forest and compare other classic models | Planned |
 | 3 | Compare with an LLM: zero-shot, few-shot and LoRA fine-tuning | Planned |
 
@@ -55,7 +55,41 @@ The first notebook checks both checksums before doing anything else.
 
 ## Results
 
-In progress.
+### Phase 1: data preparation
+
+| Check | Paper | This repository |
+|---|---|---|
+| Input files | Zenodo record 20310630 | MD5 match for both files |
+| Balanced samples (CRC / control) | 5,966 (2,983 / 2,983) | same, per-study counts match for 27 of 27 studies |
+| Genera after the 10% prevalence filter | 347 (Table S3) | same 347, name for name |
+
+Notebooks: [01 data overview](notebooks/phase_1/01_data_overview.ipynb) · [02 balanced subset](notebooks/phase_1/02_balanced_subset.ipynb) · [03 preprocessing](notebooks/phase_1/03_preprocessing.ipynb)
+
+### Phase 2A: random forest replication
+
+| Evaluation | Paper | This repository |
+|---|---|---|
+| Unified model, study-blocked 10×10 CV (paper's stated method) | 0.84 | **0.810** |
+| Unified model, random 10×10 CV (what the authors' script runs) | 0.84 | **0.845** |
+| Leave-one-study-out, 26 studies | mean 0.851 | mean 0.835, mean absolute difference 0.021, 24 of 26 within ±0.05 |
+| Cross-validation within each study, 27 studies | mean 0.834 | mean 0.824, mean absolute difference 0.030 |
+
+<p align="center">
+  <img src="results/figures/p2a_01_roc_blocked_vs_random.png" alt="ROC curves of the unified model with study-blocked and random folds" width="420">
+  <img src="results/figures/p2a_02_loso_vs_paper.png" alt="Leave-one-study-out AUC, ours against the paper's" width="420">
+</p>
+
+Notebooks: [01 unified random forest](notebooks/phase_2/phase_2a/01_unified_random_forest.ipynb) · [02 leave-one-study-out](notebooks/phase_2/phase_2a/02_loso_random_forest.ipynb)
+
+### Notes on the authors' code
+
+The notebooks follow the paper's text. Where the authors' R code does something the text does not describe, it is reported, not copied:
+
+- **The unified script does not block by study.** Its folds are random, while the Methods say study-blocked. Random folds reproduce the reported 0.84, and study-blocked folds give 0.81.
+- **`num.trees = 200` is ignored by SIAMCAT**, which reads a parameter called `ntree`. The value is dropped silently, and SIAMCAT tunes the number of trees and features per split instead.
+- **Repeats are averaged, not combined by median** as the Methods state.
+
+One study, YoungC2_2021, reaches only 0.61 in leave-one-study-out against 0.79 in the paper. The gap holds across seeds, forest settings and feature transforms, and is still open.
 
 ## Citation
 
