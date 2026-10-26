@@ -40,6 +40,8 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
+Start Jupyter from the activated environment so the notebooks run on its packages. Run the notebooks in order, phase by phase.
+
 ## Data
 
 The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). Download these two files into `data/raw/`:

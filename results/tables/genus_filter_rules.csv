@@ -1,0 +1,5 @@
+rule,n_genera,n_in_s3,n_missing,n_extra
+"> 10% of all 8,330 samples",347,347,0,0
+"> 10% of the 6,779 CRC and control samples",337,332,15,5
+">= 10% of all 8,330 samples",348,347,0,1
+">= 10% of the 6,779 CRC and control samples",337,332,15,5
