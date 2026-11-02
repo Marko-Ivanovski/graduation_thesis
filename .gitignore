@@ -9,12 +9,6 @@ docs/
 .venv/
 venv/
 
-# Data (downloaded from Zenodo, see README)
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-
 # Jupyter and Python caches
 .ipynb_checkpoints/
 __pycache__/
