@@ -66,9 +66,6 @@ graduation_thesis/
 │   │               ├── loso_vs_paper.png
 │   │               └── scv_vs_paper.png
 │   └── tables/
-│       ├── phase_1/
-│       │   └── 03_preprocessing/
-│       │       └── genus_filter_rules.csv
 │       └── phase_2/
 │           └── phase_2a/
 │               ├── 01_unified_random_forest/
