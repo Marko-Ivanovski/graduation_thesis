@@ -23,7 +23,7 @@ Can a large language model beat classic machine learning at detecting colorectal
 ```
 assets/          images used by this README
 data/raw/zenodo/ input tables from Zenodo (not in git, see Data)
-data/processed/  files produced by the notebooks, one folder per notebook (not in git)
+data/processed/  CSV files produced by the notebooks, one folder per notebook
 notebooks/       one folder per phase, notebooks numbered in run order
 results/         figures/ and tables/, each with one folder per notebook
 ```
