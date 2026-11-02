@@ -9,14 +9,6 @@ docs/
 .venv/
 venv/
 
-# Data: raw Zenodo files stay local (see README), processed CSVs are tracked
-data/raw/*
-!data/raw/.gitkeep
-data/processed/**
-!data/processed/**/
-!data/processed/**/*.csv
-!data/processed/.gitkeep
-
 # Jupyter and Python caches
 .ipynb_checkpoints/
 __pycache__/

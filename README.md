@@ -22,7 +22,7 @@ Can a large language model beat classic machine learning at detecting colorectal
 
 ```
 assets/          images used by this README
-data/raw/zenodo/ input tables from Zenodo (not in git, see Data)
+data/raw/zenodo/ input tables from Zenodo (see Data)
 data/processed/  CSV files produced by the notebooks, one folder per notebook
 notebooks/       one folder per phase, notebooks numbered in run order
 results/         figures/ and tables/, each with one folder per notebook
@@ -45,7 +45,7 @@ The notebooks use the `graduation-thesis` kernel, which the `ipykernel` line reg
 
 ## Data
 
-The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). Download these two files into `data/raw/zenodo/`:
+The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). The two files are included in `data/raw/zenodo/`:
 
 | File | MD5 |
 |---|---|
