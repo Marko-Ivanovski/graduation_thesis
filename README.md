@@ -21,19 +21,68 @@ Can a large language model beat classic machine learning at detecting colorectal
 ## Repository layout
 
 ```
-assets/                             logos for this README
-data/
-├── raw/zenodo/                     the two published input tables
-└── processed/<phase>/<notebook>/   CSV files a notebook writes for later ones
-notebooks/
-├── phase_1/                        01 data overview, 02 balanced subset, 03 preprocessing
-└── phase_2/phase_2a/               01 unified random forest, 02 leave-one-study-out
-results/
-├── figures/<phase>/<notebook>/     PNG figures
-└── tables/<phase>/<notebook>/      CSV tables
+graduation_thesis/
+├── assets/                                      logos for this README
+│   ├── finki-logo-dark.png
+│   └── finki-logo-light.png
+├── data/
+│   ├── raw/
+│   │   └── zenodo/                              published input tables (Zenodo record 20310630)
+│   │       ├── Metadata.all.samples.tsv         one row per sample: diagnosis, study, country, assay
+│   │       └── Relab.all.samples.tsv            relative abundance of each genus in each sample
+│   └── processed/                               files a notebook writes for later notebooks
+│       └── phase_1/
+│           ├── 02_balanced_subset/
+│           │   └── balanced_samples.csv         the 5,966 balanced CRC and control samples
+│           └── 03_preprocessing/
+│               ├── labels.csv                   study, assay and label (1 = CRC) per sample
+│               └── relab_347.csv                raw shares of the paper's 347 genera
+├── notebooks/                                   run in this order
+│   ├── phase_1/                                 data preparation
+│   │   ├── 01_data_overview.ipynb               checksums, loading, the data as an ML problem
+│   │   ├── 02_balanced_subset.ipynb             CRC vs control, balanced inside every study
+│   │   └── 03_preprocessing.ipynb               the 347-genus filter and the normalization
+│   └── phase_2/
+│       └── phase_2a/                            random forest replication
+│           ├── 01_unified_random_forest.ipynb   study-blocked 10×10 cross-validation
+│           └── 02_loso_random_forest.ipynb      leave-one-study-out and within-study CV
+├── results/
+│   ├── figures/                                 PNG figures, one folder per notebook
+│   │   ├── phase_1/
+│   │   │   ├── 01_data_overview/
+│   │   │   │   ├── genus_prevalence.png
+│   │   │   │   └── samples_per_study.png
+│   │   │   ├── 02_balanced_subset/
+│   │   │   │   └── balance_per_study.png
+│   │   │   └── 03_preprocessing/
+│   │   │       └── normalization_example.png
+│   │   └── phase_2/
+│   │       └── phase_2a/
+│   │           ├── 01_unified_random_forest/
+│   │           │   ├── fold_sizes.png
+│   │           │   └── roc_unified.png
+│   │           └── 02_loso_random_forest/
+│   │               ├── loso_per_study.png
+│   │               ├── loso_vs_paper.png
+│   │               └── scv_vs_paper.png
+│   └── tables/                                  CSV tables, one folder per notebook
+│       ├── phase_1/
+│       │   └── 03_preprocessing/
+│       │       └── genus_filter_rules.csv
+│       └── phase_2/
+│           └── phase_2a/
+│               ├── 01_unified_random_forest/
+│               │   └── unified_auc.csv
+│               └── 02_loso_random_forest/
+│                   ├── loso_auc.csv
+│                   └── scv_auc.csv
+├── .gitattributes                               keeps data files byte for byte (no line-ending changes)
+├── .gitignore
+├── README.md
+└── requirements.txt                             pinned Python packages
 ```
 
-Every output folder mirrors the notebook that writes it. Run the notebooks in order.
+Every folder under `data/processed/` and `results/` mirrors the notebook that writes it.
 
 ## Setup
 
