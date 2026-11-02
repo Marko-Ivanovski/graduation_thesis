@@ -7,26 +7,33 @@
 
 # Graduation Thesis: Classic ML vs. LLMs for Colorectal Cancer Detection from Gut Microbiome Data
 
-Can a large language model beat classic machine learning at detecting colorectal cancer (CRC) from gut bacteria profiles? This thesis first replicates the random forest classifier from a recent meta-analysis of 27 studies and 5,966 samples ([Pekel, Karcher et al., 2026](https://doi.org/10.1016/j.chom.2026.05.030)) in Python. It then compares tuned classic models and fine-tuned LLMs against that baseline, using the same study-blocked evaluation.
+Can a large language model beat classic machine learning at detecting colorectal cancer (CRC) from gut bacteria profiles? The thesis first rebuilds the random forest classifier from a meta-analysis of 27 studies ([Pekel, Karcher et al., 2026](https://doi.org/10.1016/j.chom.2026.05.030)) in Python, following the paper's Methods. It then compares tuned classic models and LLMs against that baseline, with the same study-blocked evaluation.
 
 ## Phases
 
 | Phase | Goal | Status |
 |---|---|---|
-| 1 | Rebuild the paper's data preparation from the published profiles | In progress |
-| 2A | Replicate the paper's random forest and match its AUCs | Planned |
+| 1 | Rebuild the paper's data preparation from the published profiles | Done |
+| 2A | Replicate the paper's random forest | Done |
 | 2B | Tune the random forest and compare other classic models | Planned |
 | 3 | Compare with an LLM: zero-shot, few-shot and LoRA fine-tuning | Planned |
 
 ## Repository layout
 
 ```
-assets/          images used by this README
-data/raw/zenodo/ input tables from Zenodo (see Data)
-data/processed/  CSV files produced by the notebooks, one folder per notebook
-notebooks/       one folder per phase, notebooks numbered in run order
-results/         figures/ and tables/, each with one folder per notebook
+assets/                             logos for this README
+data/
+├── raw/zenodo/                     the two published input tables
+└── processed/<phase>/<notebook>/   CSV files a notebook writes for later ones
+notebooks/
+├── phase_1/                        01 data overview, 02 balanced subset, 03 preprocessing
+└── phase_2/phase_2a/               01 unified random forest, 02 leave-one-study-out
+results/
+├── figures/<phase>/<notebook>/     PNG figures
+└── tables/<phase>/<notebook>/      CSV tables
 ```
+
+Every output folder mirrors the notebook that writes it. Run the notebooks in order.
 
 ## Setup
 
@@ -41,22 +48,16 @@ python -m ipykernel install --user --name graduation-thesis --display-name "Pyth
 jupyter lab
 ```
 
-The notebooks use the `graduation-thesis` kernel, which the `ipykernel` line registers once and which always runs this environment's Python. To run a notebook from the command line, use `python -m nbconvert --to notebook --execute --inplace <notebook>` from the activated environment. Run the notebooks in order, phase by phase.
+The notebooks run on the `graduation-thesis` kernel registered above.
 
 ## Data
 
-The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). The two files are included in `data/raw/zenodo/`:
+Harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). Both files are included in `data/raw/zenodo/`, and the first notebook checks their MD5 checksums.
 
 | File | MD5 |
 |---|---|
 | `Relab.all.samples.tsv` | `cca9b0b616c721c5655ec1ba8825e260` |
 | `Metadata.all.samples.tsv` | `e87644359858f853da198bce3e21b7de` |
-
-The first notebook checks both checksums before doing anything else.
-
-## Results
-
-In progress.
 
 ## Citation
 
