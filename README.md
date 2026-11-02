@@ -22,10 +22,10 @@ Can a large language model beat classic machine learning at detecting colorectal
 
 ```
 assets/          images used by this README
-data/raw/        input tables from Zenodo (not in git, see Data)
-data/processed/  files produced by the Phase 1 notebooks (not in git)
+data/raw/zenodo/ input tables from Zenodo (not in git, see Data)
+data/processed/  files produced by the notebooks, one folder per notebook (not in git)
 notebooks/       one folder per phase, notebooks numbered in run order
-results/         figures and tables produced by the notebooks
+results/         figures/ and tables/, each with one folder per notebook
 ```
 
 ## Setup
@@ -37,14 +37,15 @@ python -m venv .venv
 .venv\Scripts\activate          # Windows
 source .venv/bin/activate       # macOS / Linux
 pip install -r requirements.txt
+python -m ipykernel install --user --name graduation-thesis --display-name "Python (graduation-thesis)"
 jupyter lab
 ```
 
-Start Jupyter from the activated environment so the notebooks run on its packages. Run the notebooks in order, phase by phase.
+The notebooks use the `graduation-thesis` kernel, which the `ipykernel` line registers once and which always runs this environment's Python. To run a notebook from the command line, use `python -m nbconvert --to notebook --execute --inplace <notebook>` from the activated environment. Run the notebooks in order, phase by phase.
 
 ## Data
 
-The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). Download these two files into `data/raw/`:
+The notebooks start from the harmonized genus-level profiles published with the paper on Zenodo, [record 20310630](https://zenodo.org/records/20310630) (CC BY 4.0). Download these two files into `data/raw/zenodo/`:
 
 | File | MD5 |
 |---|---|
