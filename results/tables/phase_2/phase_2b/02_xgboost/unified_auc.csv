@@ -1,0 +1,2 @@
+model,auc_median,auc_repeat_min,auc_repeat_max,auc_2a,auc_paper
+xgboost,0.8186,0.8001,0.8184,0.8085,0.84
