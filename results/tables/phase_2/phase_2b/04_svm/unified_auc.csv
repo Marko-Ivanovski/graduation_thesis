@@ -1,0 +1,2 @@
+model,auc_median,auc_repeat_min,auc_repeat_max,auc_2a,auc_paper
+svm,0.8052,0.795,0.8078,0.8085,0.84
