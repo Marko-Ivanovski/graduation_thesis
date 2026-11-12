@@ -1,0 +1,7 @@
+model,unified_auc,repeat_min,repeat_max,unified_vs_2a,loso_mean,loso_mad_vs_paper,within_005_of_paper,loso_mean_diff_vs_2a,loso_better_than_2a
+Paper,0.84,,,,0.8512,,,,
+2A RF,0.8085,0.802,0.807,reference,0.8364,0.0205,24,0.0,0
+Tuned RF,0.8079,0.8027,0.8085,no real difference,0.8361,0.0188,24,-0.0003,8
+XGBoost,0.8186,0.8001,0.8184,better,0.8401,0.0253,23,0.0037,17
+Elastic net,0.7952,0.792,0.8057,worse,0.8263,0.0316,21,-0.0101,12
+SVM,0.8052,0.795,0.8078,no real difference,0.8246,0.0383,20,-0.0118,9

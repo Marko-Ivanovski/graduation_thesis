@@ -1,0 +1,2 @@
+model,auc_median,auc_repeat_min,auc_repeat_max,auc_2a,auc_paper
+tuned random forest,0.8079,0.8027,0.8085,0.8085,0.84

@@ -1,0 +1,2 @@
+model,auc_median,auc_repeat_min,auc_repeat_max,auc_2a,auc_paper
+elastic net,0.7952,0.792,0.8057,0.8085,0.84
